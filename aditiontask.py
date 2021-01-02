@@ -43,8 +43,6 @@ def print_cards_score(cards):
     print(f'Количество очков: {score}')
 
 
-
-
 if __name__ == "__main__":
     ans = input('Press S to start, or E to exit \n').upper()
     if ans == 'S':
@@ -60,16 +58,15 @@ if __name__ == "__main__":
         score = count_score(player_cards)
         print_cards_score(player_cards)
         if score == 21:
-            print("Поздравляю, вы выирали!")
+            print(chalk.green("Поздравляю, вы выирали!"))
         elif score > 21:
-            print("Вы проиграли!")
+            print(chalk.red("Вы проиграли!"))
         else:
             take_card_answ = input('Взять еще карту - "Y". Нет - "N" \n').upper()
             if take_card_answ == 'Y':
                 give_cards_to_player(deck, player_cards)
                 score = count_score(player_cards)
                 print_cards_score(player_cards)
-                print(score)
                 if score == 21:
                     print("Поздравляю, вы выирали!")
                 elif score > 21:
@@ -107,7 +104,166 @@ if __name__ == "__main__":
                                             print("Вы проиграли!")
                                         else:
                                             take_card_answ = input('Взять еще карту - "Y". Нет - "N" \n').upper()
+                                    elif take_card_answ == 'N':
+                                        give_cards_to_player(deck, comp_cards)
+                                        c_score = count_score(comp_cards)
+                                        if c_score > 21:
+                                            print('Поздравляю, вы выирали!')
+                                        elif c_score < 18:
+                                            give_cards_to_player(deck, comp_cards)
+                                            c_score = count_score(comp_cards)
+                                            if c_score > 21:
+                                                print('Поздравляю, вы выирали!')
+                                            elif c_score < 18:
+                                                give_cards_to_player(deck, comp_cards)
+                                                c_score = count_score(comp_cards)
+                                                if c_score > 21:
+                                                    print('Поздравляю, вы выирали!')
+                                                elif c_score < 18:
+                                                    give_cards_to_player(deck, comp_cards)
+                                                    c_score = count_score(comp_cards)
+                                                else:
+                                                    if c_score > score:
+                                                        print("Вы проиграли!")
+                                                    elif c_score < score:
+                                                        print('Поздравляю, вы выирали!')
+                                                    else:
+                                                        print('Ничья')
+                                            else:
+                                                if c_score > score:
+                                                    print("Вы проиграли!")
+                                                elif c_score < score:
+                                                    print('Поздравляю, вы выирали!')
+                                                else:
+                                                    print('Ничья')
+                                        else:
+                                            if c_score > score:
+                                                print("Вы проиграли!")
+                                            elif c_score < score:
+                                                print('Поздравляю, вы выирали!')
+                                            else:
+                                                print('Ничья')
+                            elif take_card_answ == 'N':
+                                give_cards_to_player(deck, comp_cards)
+                                c_score = count_score(comp_cards)
+                                if c_score > 21:
+                                    print('Поздравляю, вы выирали!')
+                                elif c_score < 18:
+                                    give_cards_to_player(deck, comp_cards)
+                                    c_score = count_score(comp_cards)
+                                    if c_score > 21:
+                                        print('Поздравляю, вы выирали!')
+                                    elif c_score < 18:
+                                        give_cards_to_player(deck, comp_cards)
+                                        c_score = count_score(comp_cards)
+                                        if c_score > 21:
+                                            print('Поздравляю, вы выирали!')
+                                        elif c_score < 18:
+                                            give_cards_to_player(deck, comp_cards)
+                                            c_score = count_score(comp_cards)
+                                        else:
+                                            if c_score > score:
+                                                print("Вы проиграли!")
+                                            elif c_score < score:
+                                                print('Поздравляю, вы выирали!')
+                                            else:
+                                                print('Ничья')
+                                    else:
+                                        if c_score > score:
+                                            print("Вы проиграли!")
+                                        elif c_score < score:
+                                            print('Поздравляю, вы выирали!')
+                                        else:
+                                            print('Ничья')
+                                else:
+                                    if c_score > score:
+                                        print("Вы проиграли!")
+                                    elif c_score < score:
+                                        print('Поздравляю, вы выирали!')
+                                    else:
+                                        print('Ничья')
+
+                    elif take_card_answ == 'N':
+                        give_cards_to_player(deck, comp_cards)
+                        c_score = count_score(comp_cards)
+                        if c_score > 21:
+                            print('Поздравляю, вы выирали!')
+                        elif c_score < 18:
+                            give_cards_to_player(deck, comp_cards)
+                            c_score = count_score(comp_cards)
+                            if c_score > 21:
+                                print('Поздравляю, вы выирали!')
+                            elif c_score < 18:
+                                give_cards_to_player(deck, comp_cards)
+                                c_score = count_score(comp_cards)
+                                if c_score > 21:
+                                    print('Поздравляю, вы выирали!')
+                                elif c_score < 18:
+                                    give_cards_to_player(deck, comp_cards)
+                                    c_score = count_score(comp_cards)
+                                else:
+                                    if c_score > score:
+                                        print("Вы проиграли!")
+                                    elif c_score < score:
+                                        print('Поздравляю, вы выирали!')
+                                    else:
+                                        print('Ничья')
+                            else:
+                                if c_score > score:
+                                    print("Вы проиграли!")
+                                elif c_score < score:
+                                    print('Поздравляю, вы выирали!')
+                                else:
+                                    print('Ничья')
+                        else:
+                            if c_score > score:
+                                print("Вы проиграли!")
+                            elif c_score < score:
+                                print('Поздравляю, вы выирали!')
+                            else:
+                                print('Ничья')
 
 
             else:
                 give_cards_to_player(deck, comp_cards)
+                c_score = count_score(comp_cards)
+                if c_score > 21:
+                    print('Поздравляю, вы выирали!')
+                elif c_score < 18:
+                    give_cards_to_player(deck, comp_cards)
+                    c_score = count_score(comp_cards)
+                    if c_score > 21:
+                        print('Поздравляю, вы выирали!')
+                    elif c_score < 18:
+                        give_cards_to_player(deck, comp_cards)
+                        c_score = count_score(comp_cards)
+                        if c_score > 21:
+                            print('Поздравляю, вы выирали!')
+                        elif c_score < 18:
+                            give_cards_to_player(deck, comp_cards)
+                            c_score = count_score(comp_cards)
+                        else:
+                            if c_score > score:
+                                print("Вы проиграли!")
+                            elif c_score < score:
+                                print('Поздравляю, вы выирали!')
+                            else:
+                                print('Ничья')
+                    elif c_score == 21:
+                        print("Вы проиграли!")
+                    else:
+                        if c_score > score:
+                            print("Вы проиграли!")
+                        elif c_score < score:
+                            print('Поздравляю, вы выирали!')
+                        else:
+                            print('Ничья')
+                elif c_score == 21:
+                    print("Вы проиграли!")
+                else:
+                    if c_score > score:
+                        print("Вы проиграли!")
+                    elif c_score < score:
+                        print('Поздравляю, вы выирали!')
+                    else:
+                        print('Ничья')
