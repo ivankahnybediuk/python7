@@ -17,43 +17,59 @@ def make_deck(deck):
                 'value': value[i]
             })
     return deck
+
+
 def deck_shuffle(deck):
     random.shuffle(deck)
     return deck
-def give_cards_to_player(deck):
-    player_cards.append(deck.pop())
+
+
+def give_cards_to_player(deck, player):
+    player.append(deck.pop())
     return deck
-def print_cards_score(player_cards):
-    player_score = 0
+
+
+def count_score(player):
+    pscore = 0
+    for i in range(len(player)):
+        pscore += player[i]['value']
+    return pscore
+
+
+def print_cards_score(cards):
     print('Ваши карты: ')
-    for i in range(len(player_cards)):
-        print(f'{player_cards[i]["name"]} {player_cards[i]["suit"]}')
-        player_score += player_cards[i]['value']
-    print(f'Количество очков: {player_score}')
-    return player_score
-deck = []
-comp_cards = []
-c_score = 0
-player_cards = []
-score = print_cards_score(player_cards)
+    for i in range(len(cards)):
+        print(f'{cards[i]["name"]} {cards[i]["suit"]}')
+    print(f'Количество очков: {score}')
+
+
+
 
 if __name__ == "__main__":
     ans = input('Press S to start, or E to exit \n').upper()
     if ans == 'S':
+        deck = []
+        comp_cards = []
+        c_score = 0
+        player_cards = []
+        score = 0
         make_deck(deck)
         deck_shuffle(deck)
-        give_cards_to_player(deck)
-        give_cards_to_player(deck)
+        give_cards_to_player(deck, player_cards)
+        give_cards_to_player(deck, player_cards)
+        score = count_score(player_cards)
         print_cards_score(player_cards)
         if score == 21:
             print("Поздравляю, вы выирали!")
-        elif score >21:
+        elif score > 21:
             print("Вы проиграли!")
         else:
             take_card_answ = input('Взять еще карту - "Y". Нет - "N" \n').upper()
             if take_card_answ == 'Y':
-                give_cards_to_player(deck)
+                give_cards_to_player(deck, player_cards)
+                score = count_score(player_cards)
                 print_cards_score(player_cards)
+                print(score)
                 if score == 21:
                     print("Поздравляю, вы выирали!")
                 elif score > 21:
@@ -61,8 +77,10 @@ if __name__ == "__main__":
                 else:
                     take_card_answ = input('Взять еще карту - "Y". Нет - "N" \n').upper()
                     if take_card_answ == 'Y':
-                        give_cards_to_player(deck)
+                        give_cards_to_player(deck, player_cards)
+                        score = count_score(player_cards)
                         print_cards_score(player_cards)
+
                         if score == 21:
                             print("Поздравляю, вы выирали!")
                         elif score > 21:
@@ -70,7 +88,8 @@ if __name__ == "__main__":
                         else:
                             take_card_answ = input('Взять еще карту - "Y". Нет - "N" \n').upper()
                             if take_card_answ == 'Y':
-                                give_cards_to_player(deck)
+                                give_cards_to_player(deck, player_cards)
+                                count_score(player_cards)
                                 print_cards_score(player_cards)
                                 if score == 21:
                                     print("Поздравляю, вы выирали!")
@@ -79,7 +98,8 @@ if __name__ == "__main__":
                                 else:
                                     take_card_answ = input('Взять еще карту - "Y". Нет - "N" \n').upper()
                                     if take_card_answ == 'Y':
-                                        give_cards_to_player(deck)
+                                        give_cards_to_player(deck, player_cards)
+                                        count_score(player_cards)
                                         print_cards_score(player_cards)
                                         if score == 21:
                                             print("Поздравляю, вы выирали!")
@@ -90,4 +110,4 @@ if __name__ == "__main__":
 
 
             else:
-                pass
+                give_cards_to_player(deck, comp_cards)
